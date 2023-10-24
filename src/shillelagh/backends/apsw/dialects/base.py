@@ -63,7 +63,12 @@ class APSWDialect(SQLiteDialect):
         """
         return db
 
-    import_dbapi = dbapi
+    @classmethod
+    def import_dbapi(cls):  # pylint: disable=method-hidden
+        """
+        New version of the ``dbapi`` method.
+        """
+        return db
 
     def __init__(
         self,
@@ -114,7 +119,7 @@ class APSWDialect(SQLiteDialect):
                     connection,
                     table_name,
                     schema,
-                    **kwargs,
+                    **kwargs,  # pylint: disable=unused-argument
                 ),
             )
         return True
